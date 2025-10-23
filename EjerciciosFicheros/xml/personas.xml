@@ -1,0 +1,12 @@
+<personas>
+  <persona>
+    <id doc="DNI">89320412H</id>
+    <nombre>Juan</nombre>
+    <edad>30</edad>
+  </persona>
+  <persona>
+    <id doc="DNI">18239843P</id>
+    <nombre>Adri</nombre>
+    <edad>25</edad>
+  </persona>
+</personas>
