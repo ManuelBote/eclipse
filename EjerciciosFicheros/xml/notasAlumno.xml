@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <alumnos>
   <alumno>
-    <numExpediente>12314</numExpediente>
-    <nombreAlumno>pepe</nombreAlumno>
-    <nota>5</nota>
+    <numExpediente>19230</numExpediente>
+    <nombreAlumno>ine</nombreAlumno>
+    <nota>7.0</nota>
+  </alumno>
+  <alumno>
+    <numExpediente>20345</numExpediente>
+    <nombreAlumno>jua</nombreAlumno>
+    <nota>9.0</nota>
+  </alumno>
+  <alumno>
+    <numExpediente>73843</numExpediente>
+    <nombreAlumno>carlo</nombreAlumno>
+    <nota>6.0</nota>
   </alumno>
 </alumnos>
