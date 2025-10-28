@@ -1,5 +1,7 @@
 package Ejercicios2Parte;
 
+//@author Manuel Bote Zabala
+
 public class Alumno {
 	
 	private int numEx;
