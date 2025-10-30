@@ -1,4 +1,4 @@
-package Ejercicios;
+package Ejemplos;
 
 import javax.xml.bind.annotation.XmlType;
 
