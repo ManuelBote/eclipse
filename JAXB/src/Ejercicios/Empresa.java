@@ -6,68 +6,69 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+@XmlType(propOrder = {"nie", "nombre", "direccion", "trabajadores"})
 @XmlRootElement()
 public class Empresa {
 	
-	int NIE;
-	String Nombre;
-	Direccion Direccion;
-	ArrayList<Trabajador>Trabajadores = new ArrayList<>();
+	int nie;
+	String nombre;
+	Direccion direccion;
+	ArrayList<Trabajador>trabajadores = new ArrayList<>();
 	
 	public Empresa() {
 	}
 	
-	public Empresa(int nIE, String nombre, Ejercicios.Direccion direccion, ArrayList<Trabajador> trabajadores) {
-		NIE = nIE;
-		Nombre = nombre;
-		Direccion = direccion;
-		Trabajadores = trabajadores;
+	public Empresa(int nie, String nombre, Ejercicios.Direccion direccion, ArrayList<Trabajador> trabajadores) {
+		this.nie = nie;
+		this.nombre = nombre;
+		this.direccion = direccion;
+		this.trabajadores = trabajadores;
 	}
 
 	@XmlElement
-	public int getNIE() {
-		return NIE;
+	public int getNie() {
+		return nie;
 	}
 
-	public void setNIE(int nIE) {
-		NIE = nIE;
+	public void setNie(int nie) {
+		this.nie = nie;
 	}
 
 
 	@XmlElement
 	public String getNombre() {
-		return Nombre;
+		return nombre;
 	}
 
 	public void setNombre(String nombre) {
-		Nombre = nombre;
+		this.nombre = nombre;
 	}
 	
 	@XmlElement
 	public Direccion getDireccion() {
-		return Direccion;
+		return direccion;
 	}
 
 	public void setDireccion(Direccion direccion) {
-		Direccion = direccion;
+		this.direccion = direccion;
 	}
 	
 	@XmlElement(name = "Trabajador")
 	public ArrayList<Trabajador> getTrabajadores() {
-		return Trabajadores;
+		return trabajadores;
 	}
 
 	public void setTrabajadores(ArrayList<Trabajador> trabajadores) {
-		Trabajadores = trabajadores;
+		this.trabajadores = trabajadores;
 	}
 	
 	public void mostrarTrabajador() {
-		for (Trabajador t : Trabajadores)
+		for (Trabajador t : trabajadores)
 			System.out.println(t.toString());
 	}
 	
 	public void aniadirTrabajador(Trabajador t) {
-		this.Trabajadores.add(t);
+		this.trabajadores.add(t);
 	}
 	
 	

@@ -30,7 +30,7 @@ public class Ej44 {
 				emp = (Empresa) um.unmarshal(archivo);	
 				
 				for (int i = 0; i < emp.getTrabajadores().size(); i++) {
-					trab.put(emp.getTrabajadores().get(i).getNIF(), emp.getTrabajadores().get(i));
+					trab.put(emp.getTrabajadores().get(i).getNif(), emp.getTrabajadores().get(i));
 				}
 				
 				System.out.println("Datos cargados");

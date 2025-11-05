@@ -2,42 +2,42 @@ package Ejercicios;
 
 import javax.xml.bind.annotation.XmlType;
 
-@XmlType(propOrder = {"NIF", "Nombre", "Cargo"})
+@XmlType(propOrder = {"nif", "nombre", "cargo"})
 
 public class Trabajador {
-
-	String Nombre, Cargo;
-	int NIF;
+	
+    String nombre, cargo;
+    int nif;
 	
 	
-	public Trabajador(String nombre, String cargo, int nIF) {
-		Nombre = nombre;
-		Cargo = cargo;
-		NIF = nIF;
+	public Trabajador(String nombre, String cargo, int nif) {
+		this.nombre = nombre;
+		this.cargo = cargo;
+		this.nif = nif;
 	}
 	
 	public String getNombre() {
-		return Nombre;
+		return nombre;
 	}
 	
 	public void setNombre(String nombre) {
-		Nombre = nombre;
+		this.nombre = nombre;
 	}
 	
 	public String getCargo() {
-		return Cargo;
+		return cargo;
 	}
 	
 	public void setCargo(String cargo) {
-		Cargo = cargo;
+		this.cargo = cargo;
 	}
 	
-	public int getNIF() {
-		return NIF;
+	public int getNif() {
+		return nif;
 	}
 	
-	public void setNIF(int nIF) {
-		NIF = nIF;
+	public void setNif(int nif) {
+		this.nif = nif;
 	}
 	
 	

@@ -2,59 +2,58 @@ package Ejercicios;
 
 import javax.xml.bind.annotation.XmlType;
 
-@XmlType(propOrder = {"Calle", "Numero", "Localidad", "CP"})
+@XmlType(propOrder = {"calle", "numero", "localidad", "cp"})
 
 public class Direccion {
 	
-	String Calle, Localidad;
-	int Numero, CP;
+    String calle, localidad;
+    int numero, cp;
 	
-	
-	public Direccion(String calle, String localidad, int numero, int cP) {
-		Calle = calle;
-		Localidad = localidad;
-		Numero = numero;
-		CP = cP;
+	public Direccion(String calle, String localidad, int numero, int cp) {
+		this.calle = calle;
+		this.localidad = localidad;
+		this.numero = numero;
+		this.cp = cp;
 	}
 
 
 	public String getCalle() {
-		return Calle;
+		return calle;
 	}
 
 
 	public void setCalle(String calle) {
-		Calle = calle;
+		this.calle = calle;
 	}
 
 
 	public String getLocalidad() {
-		return Localidad;
+		return localidad;
 	}
 
 
 	public void setLocalidad(String localidad) {
-		Localidad = localidad;
+		this.localidad = localidad;
 	}
 
 
 	public int getNumero() {
-		return Numero;
+		return numero;
 	}
 
 
 	public void setNumero(int numero) {
-		Numero = numero;
+		this.numero = numero;
 	}
 
 
-	public int getCP() {
-		return CP;
+	public int getCp() {
+		return cp;
 	}
 
 
-	public void setCP(int cP) {
-		CP = cP;
+	public void setCp(int cP) {
+		this.cp = cp;
 	}
 	
 }
