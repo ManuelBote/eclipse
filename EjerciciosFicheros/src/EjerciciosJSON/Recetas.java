@@ -46,4 +46,10 @@ public class Recetas {
 		this.ingredientes = ingredientes;
 	}
 
+	@Override
+	public String toString() {
+		return "Recetas [nombre=" + nombre + ", tipo=" + tipo + ", origen=" + origen + ", ingredientes=" + ingredientes + "]";
+	}
+
+	
 }

@@ -8,6 +8,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class RecetasContenedor {
 
 	private List<Recetas> recetas;
+	
+	public RecetasContenedor() {
+	}
 
 	public List<Recetas> getRecetas() {
 		return recetas;
