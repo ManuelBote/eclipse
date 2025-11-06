@@ -1,4 +1,13 @@
-{"dni": "12345678A",
- "nombre": "paco",
-  "edad": 21
+[
+  {
+    "dni": "12345678A",
+    "nombre": "paco",
+    "edad": 21
+  },
+  {
+    "dni": "89123456B",
+    "nombre": "juan",
+    "edad": 40,
+    "curso": "1DAW"
   }
+]
