@@ -4,11 +4,11 @@ public class Principal {
 	
 public static void main(String[] arg) {
 		
-		Hilo h = new Hilo();
-		Hilo h2 = new Hilo();
+		Thread t1 = new Thread(new Hilo());
+		Thread t2 = new Thread(new Hilo());
 		
-		h.start();
-		h2.start();
+		t1.start();
+		t2.start();
 		
 	}
 
