@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<personas>
+  <persona>
+    <dni>12345678A</dni>
+    <nombre>Juan Perez</nombre>
+    <edad>30</edad>
+  </persona>
+  <persona>
+    <dni>23456789B</dni>
+    <nombre>Maria Lopez</nombre>
+    <edad>25</edad>
+  </persona>
+  <persona>
+    <dni>34567890C</dni>
+    <nombre>Antonio Garcia</nombre>
+    <edad>40</edad>
+  </persona>
+</personas>
