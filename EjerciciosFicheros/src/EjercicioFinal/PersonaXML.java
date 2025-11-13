@@ -1,16 +1,16 @@
 package EjercicioFinal;
 
+import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlType(propOrder = {"dni", "telefono", "email"})
-public class PersonaXML {
+public class PersonaXML implements Serializable{
 	
-	@XmlElement
+	
 	String dni;
-	@XmlElement
 	int telefono;
-	@XmlElement
 	String email;
 	
 	public PersonaXML() {
@@ -21,8 +21,8 @@ public class PersonaXML {
 		this.telefono = telefono;
 		this.email = email;
 	}
-	
-	@XmlElement(name = "dni")
+
+	@XmlElement
 	public String getDni() {
 		return dni;
 	}
@@ -30,8 +30,8 @@ public class PersonaXML {
 	public void setDni(String dni) {
 		this.dni = dni;
 	}
-	
-	@XmlElement(name = "telefono")
+
+	@XmlElement
 	public int getTelefono() {
 		return telefono;
 	}
@@ -40,7 +40,7 @@ public class PersonaXML {
 		this.telefono = telefono;
 	}
 
-	@XmlElement(name = "email")
+	@XmlElement
 	public String getEmail() {
 		return email;
 	}
@@ -54,6 +54,10 @@ public class PersonaXML {
 		return "PersonaXML [dni=" + dni + ", telefono=" + telefono + ", email=" + email + "]";
 	}
 	
+	
+
+	
+
 	
 
 }

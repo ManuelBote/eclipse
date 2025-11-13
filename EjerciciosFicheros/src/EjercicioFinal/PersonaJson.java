@@ -1,6 +1,8 @@
 package EjercicioFinal;
 
-public class PersonaJson {
+import java.io.Serializable;
+
+public class PersonaJson implements Serializable {
 	
 	String dni;
 	String nombre;

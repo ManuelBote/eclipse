@@ -1,10 +1,11 @@
 package EjercicioFinal;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
 
-public class PersonasJson {
+public class PersonasJson implements Serializable{
 	
 	public List<PersonaJson> personas;
 	

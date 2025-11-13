@@ -1,6 +1,12 @@
 package EjercicioFinal;
 
-public class Persona {
+import java.io.Serializable;
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlType(propOrder = {"dni", "telefono", "email"})
+public class Persona implements Serializable {
 	
 	String dni;
 	String nombre;
@@ -10,6 +16,21 @@ public class Persona {
 	
 	public Persona() {
 	}
+	
+
+	public Persona(String dni, String nombre, int edad) {
+		this.dni = dni;
+		this.nombre = nombre;
+		this.edad = edad;
+	}
+	
+
+	public Persona(String dni, int telefono, String email) {
+		this.dni = dni;
+		this.telefono = telefono;
+		this.email = email;
+	}
+
 
 	public Persona(String dni, String nombre, int edad, int telefono, String email) {
 		this.dni = dni;
@@ -19,7 +40,8 @@ public class Persona {
 		this.email = email;
 	}
 	
-
+	
+	@XmlElement
 	public String getDni() {
 		return dni;
 	}
@@ -44,6 +66,7 @@ public class Persona {
 		this.edad = edad;
 	}
 
+	@XmlElement
 	public int getTelefono() {
 		return telefono;
 	}
@@ -52,6 +75,7 @@ public class Persona {
 		this.telefono = telefono;
 	}
 
+	@XmlElement
 	public String getEmail() {
 		return email;
 	}

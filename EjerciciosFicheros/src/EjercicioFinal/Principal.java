@@ -1,27 +1,21 @@
 package EjercicioFinal;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.TransformerFactoryConfigurationError;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Text;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -30,8 +24,11 @@ public class Principal {
 	static Scanner sc = new Scanner(System.in);
 	static PersonasJson personasJson = new PersonasJson();
 	static PersonasXML personasXml = new PersonasXML();
+	static TreeMap<String, PersonaJson>  ArrayPersonasJson = new TreeMap<String, PersonaJson>();
+	static TreeMap<String, PersonaXML>  ArrayPersonasXml = new TreeMap<String, PersonaXML>();
+	static TreeMap<String, Persona> ArrayPersonas = new TreeMap<String, Persona>();
 
-	public static void main(String[] args) throws TransformerFactoryConfigurationError, TransformerException {
+	public static void main(String[] args)  {
 		// TODO Auto-generated method stub
 
 		//Lectura del JSON
@@ -46,6 +43,9 @@ public class Principal {
 				System.out.println(p.toString());
 			}
 			*/
+			for (PersonaJson p : personasJson.getPersonasJson()) {
+				ArrayPersonasJson.put(p.getDni(), p);
+			}
 			
 		} catch (IOException e) {
 			// TODO: handle exception
@@ -59,11 +59,12 @@ public class Principal {
 			personasXml = (PersonasXML) um.unmarshal(new File("xml/personas.xml"));	
 			
 			/*  Comprobar que cargen los objetos
-			
+				for(PersonaXML p : personasXml.getPersonasXML()) {
+					System.out.println(p.toString());
+				}
 			*/
-			
-			for(PersonaXML p : personasXml.getPersonasXML()) {
-				System.out.println(p.toString());
+			for (PersonaXML p : personasXml.getPersonasXML()) {
+				ArrayPersonasXml.put(p.getDni(), p);
 			}
 			
 		} catch (JAXBException e) {
@@ -99,9 +100,11 @@ public class Principal {
 				break;
 
 			case 3:
+				unificarFicheros();
 				break;
 				
 			case 4:
+				
 				break;
 				
 			case 5:
@@ -115,6 +118,40 @@ public class Principal {
 
 	}
 
+	private static void unificarFicheros() {
+		// TODO Auto-generated method stub
+		generarArrayTotal();
+		
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(new File("personasFusion.obj")))){
+			for(Persona p : ArrayPersonas.values()) {
+				bw.write(p.toString());
+				bw.newLine();
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+	}
+	
+	private static void generarArrayTotal() {
+		for(PersonaJson p: ArrayPersonasJson.values()) {
+			if(ArrayPersonasXml.containsKey(p.getDni())) {
+				ArrayPersonas.put(p.getDni(), new Persona(p.getDni(), p.getNombre(), p.getEdad(), ArrayPersonasXml.get(p.getDni()).getTelefono()
+						, ArrayPersonasXml.get(p.getDni()).getEmail()));
+			} else {
+				ArrayPersonas.put(p.getDni(), new Persona(p.getDni(), p.getNombre(), p.getEdad()));
+			}
+		}
+		
+		for(PersonaXML p: ArrayPersonasXml.values()) {
+				if(!ArrayPersonas.containsKey(p.getDni())){
+				ArrayPersonas.put(p.getDni(), new Persona(p.getDni(), p.getTelefono(), p.getEmail()));
+			}
+		}
+	}
+
 	private static void leerXML() {
 		// TODO Auto-generated method stub
 		try {
@@ -122,7 +159,7 @@ public class Principal {
 			Marshaller marshaller = jaxbContext.createMarshaller();
 		
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-			marshaller.marshal(personasXml, System.out);
+			marshaller.marshal(personasXml, new File("xml/personas2.xml"));
 			
 		} catch (JAXBException e) {
 			// TODO: handle exception
@@ -133,60 +170,30 @@ public class Principal {
 		
 	}
 
-	private static void leerJson() throws TransformerFactoryConfigurationError, TransformerException {
+	private static void leerJson() {
 		// TODO Auto-generated method stub
-		
-
-		try {
-			DocumentBuilderFactory factoria = DocumentBuilderFactory.newInstance();
-			DocumentBuilder db = factoria.newDocumentBuilder();
-			
-			Document documento = db.newDocument();
-			documento.setXmlVersion("1.0");
-			
-			Element personasCont = documento.createElement("personas");
-			
-			for (PersonaJson a : personasJson.getPersonasJson()) {
-				
-				Element persona = documento.createElement("persona");
-				
-				Element dni = documento.createElement("dni");
-				Element nombre = documento.createElement("nombre");
-				Element edad = documento.createElement("edad");
-				
-				Text textoDni = documento.createTextNode(a.getDni());
-				Text textoNombre = documento.createTextNode(a.getNombre());
-				Text textoEdad = documento.createTextNode(Integer.toString(a.getEdad()));
-				
-				dni.appendChild(textoDni);
-				nombre.appendChild(textoNombre);
-				edad.appendChild(textoEdad);
-				
-				persona.appendChild(dni);
-				persona.appendChild(nombre);
-				persona.appendChild(edad);
-				
-				personasCont.appendChild(persona);
+		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("persona1.obj")))){
+			for(PersonaJson p: personasJson.getPersonasJson()) {
+				oos.writeObject(p);
 			}
 			
-			
-			documento.appendChild(personasCont);
-			
-			DOMSource fuente = new DOMSource(documento);
-			StreamResult fichero = new StreamResult(new File("xml/leerJson.xml"));
-
-			Transformer t = TransformerFactory.newInstance().newTransformer();
-
-			t.setOutputProperty(OutputKeys.INDENT, "yes");
-			t.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
-			
-			t.transform(fuente, fichero);
-			
-			System.out.println("Fichero creado");
-		} catch (ParserConfigurationException e) {
+		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+		
+		/*
+		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("persona1.obj")))){
+			while(true) {
+				PersonaJson p = (PersonaJson) ois.readObject();
+				System.out.println(p.toString());
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		*/
 		
 		
 		
