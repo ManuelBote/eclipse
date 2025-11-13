@@ -16,7 +16,6 @@ import java.util.TreeMap;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -170,6 +169,7 @@ public class Principal {
 		            
 		            raf.writeUTF(dni);
 					raf.writeInt(p.getTelefono());
+					
 		        } catch (EOFException eof) {
 		            break; // Fin del archivo, salimos del bucle
 		        }
