@@ -12,10 +12,21 @@ import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import EjercicioFinal.Persona;
 
 public class Principal {
 	
+	static final File FILE_CSV = new File("ropa.csv");
+	static final File FILE_DAT = new File("ropa.dat");
+	static final File FILE_PRECIOS = new File("precio.dat");
+	static final File FILE_XML = new File("xml/ropa.xml");
+	static final File FILE_JSON = new File("json/ropa.json");
+
 	static Scanner tc = new Scanner(System.in);
 	static ArrayList<Ropa> listaRopa = new ArrayList<Ropa>();
 
@@ -54,8 +65,7 @@ public class Principal {
 	
 	//Ejercicio 1
 	public static void ejercicio1() {
-		
-		try (BufferedReader bw = new BufferedReader(new FileReader(new File("ropa.csv")))){
+		try (BufferedReader bw = new BufferedReader(new FileReader(FILE_CSV))){
 			String linea = "";
 			while((linea = bw.readLine()) != null) {
 				String[] datos = linea.split(";");
@@ -68,55 +78,25 @@ public class Principal {
 			e.printStackTrace();
 		}
 		
-		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("ropa.dat")))) {
+		try (RandomAccessFile raf = new RandomAccessFile(FILE_DAT, "rw")) {
 			for (Ropa r: listaRopa) {
-				oos.writeInt(r.getId()); //Id
+				raf.writeInt(r.getId());
+                raf.writeUTF(r.getNombre());
+                //raf.writeUTF(r.getCategoria());
+                raf.writeUTF(r.getTalla());
+                raf.writeUTF(r.getColor());
+                //raf.writeUTF(r.getMaterial());
+                raf.writeInt(r.getStock());
+                raf.writeInt(r.getPrecio());
+                raf.writeInt(r.getCoste());
+                raf.writeUTF(r.getEstado());
+                raf.writeInt(r.getDescuento());
 				
-				//Nombre
-				String dat = r.getNombre();
-				if(dat.length() < 30) {
-					while(dat.length() == 30) {
-						dat += " ";
-					}
-				}
-				oos.writeBytes(dat);
-				
-				//Talla
-				dat = r.getTalla();
-				if(dat.length() < 3) {
-					while(dat.length() == 3) {
-						dat += " ";
-					}
-				}
-				oos.writeBytes(dat);
-				
-				//Color
-				dat = r.getColor();
-				if(dat.length() < 10) {
-					while(dat.length() == 10) {
-						dat += " ";
-					}
-				}
-				oos.writeBytes(dat);
-				
-				oos.writeInt(r.getStock());		//stock
-				oos.writeInt(r.getPrecio());	//precio
-				oos.writeInt(r.getCoste());		//coste
-				
-				//Estado
-				dat = r.getEstado();
-				if(dat.length() < 50) {
-					while(dat.length() == 50) {
-						dat += " ";
-					}
-				}
-				oos.writeBytes(dat);
-				
-				oos.writeInt(r.getDescuento());		//descuento
 			}
+			
+			
 		} catch (Exception e) {
 			// TODO: handle exception
-			e.printStackTrace();
 		}
 		
 		/* Metodo mostrar, para comprobar el funcionamiento
@@ -150,23 +130,29 @@ public class Principal {
 	}
 	
 	public static void ejercicio2() {
-		
-		try (RandomAccessFile raf = new RandomAccessFile("ropa.dat", "r");
-				ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("precio.dat")))){ 
+		try (RandomAccessFile raf = new RandomAccessFile(FILE_DAT, "r");
+				RandomAccessFile raf2 = new RandomAccessFile(FILE_PRECIOS, "rw")){ 
 			while (true) {
 		        try {
 		        	int id = raf.readInt();
 
-		            raf.skipBytes(53);
-		            
+		            String nombre = raf.readUTF().trim();
+		            String talla = raf.readUTF().trim();
+		            String color = raf.readUTF().trim();
+
+		            int stock = raf.readInt();
 		            int precio = raf.readInt();
 		            int coste = raf.readInt();
 
-		            raf.skipBytes(52);
-		         
+		            String estado = raf.readUTF().trim();
 		            int descuento = raf.readInt();
 
 		            System.out.println(id + ", " + precio + ", " + coste + ", " + descuento);
+		            
+		            raf2.writeInt(id);
+		            raf2.writeInt(precio);
+		            raf2.writeInt(coste);
+		            raf2.writeInt(descuento);
 		        } catch (EOFException eof) {
 		            break; // Fin del archivo, salimos del bucle
 		        }
@@ -179,14 +165,107 @@ public class Principal {
 	}
 	
 	public static void ejercicio3() {
+		System.out.print("Introduzca el id del producto: ");
+		int idBuscado = tc.nextInt(); tc.nextLine();
+		
+		try (RandomAccessFile raf = new RandomAccessFile(FILE_PRECIOS, "r")){
+			
+			while (raf.getFilePointer() < raf.length()) {
+				int id = raf.readInt();
+				
+				if (id == idBuscado) {
+					int precio = raf.readInt();
+					int coste = raf.readInt();
+					int descuento = raf.readInt();
+					
+					double beneficio = precio - (precio*descuento/100)-coste;
+					System.out.println("Beneficio: " + beneficio);
+					
+					return;
+				}
+				else {raf.skipBytes(12);}
+			}
+			System.out.println("DNI no encontrado.");
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
 		
 	}
 	
 	public static void ejercicio4() {
+		ContenedorRopaXML contRopa = new ContenedorRopaXML();
+		
+		try (RandomAccessFile raf = new RandomAccessFile(FILE_DAT, "r")){
+			
+			while (true) {
+		        try {
+		        	int id = raf.readInt();
+
+		            String nombre = raf.readUTF().trim();
+		            String talla = raf.readUTF().trim();
+		            String color = raf.readUTF().trim();
+
+		            int stock = raf.readInt();
+		            int precio = raf.readInt();
+		            int coste = raf.readInt();
+
+		            String estado = raf.readUTF().trim();
+		            int descuento = raf.readInt();
+
+		            contRopa.getPrendas().add(new RopaXML(nombre, talla, color, precio, estado));
+		        } catch (EOFException eof) {
+		            break; // Fin del archivo, salimos del bucle
+		        }
+		    } 
+			
+			JAXBContext jaxbContext = JAXBContext.newInstance(ContenedorRopaXML.class);
+			Marshaller marshaller = jaxbContext.createMarshaller();
+			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+			marshaller.marshal(contRopa, FILE_XML);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
 		
 	}
 	
 	public static void ejercicio5() {
+		ObjectMapper mapper = new ObjectMapper();
+		ContenedorRopaJSON contRopa = new ContenedorRopaJSON();
+		
+		try (RandomAccessFile raf = new RandomAccessFile(FILE_DAT, "r")){
+			
+			while (true) {
+		        try {
+		        	int id = raf.readInt();
+
+		            String nombre = raf.readUTF().trim();
+		            String talla = raf.readUTF().trim();
+		            String color = raf.readUTF().trim();
+
+		            int stock = raf.readInt();
+		            int precio = raf.readInt();
+		            int coste = raf.readInt();
+
+		            String estado = raf.readUTF().trim();
+		            int descuento = raf.readInt();
+
+		            contRopa.getPrendas().add(new RopaJSON(id, precio));
+		        } catch (EOFException eof) {
+		            break; // Fin del archivo, salimos del bucle
+		        }
+		    } 
+			
+			mapper.writeValue(FILE_JSON, contRopa.getPrendas());			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 		
 	}
 }

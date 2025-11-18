@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlType;
 
-@XmlType(propOrder = {"id", "nombre", "categoria", "talla", "color", "material", "stock", "precio", "estado", "descuento"})
 public class Ropa implements Serializable{
 
 	int id;

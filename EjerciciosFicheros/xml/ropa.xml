@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Prendas>
+    <Prenda>
+        <nombre>Camisa de algodon</nombre>
+        <talla>M</talla>
+        <color>Azul</color>
+        <precio>20</precio>
+        <estado>Usado en buen estado</estado>
+    </Prenda>
+    <Prenda>
+        <nombre>Pantalones jeans</nombre>
+        <talla>L</talla>
+        <color>Negro</color>
+        <precio>30</precio>
+        <estado>Nuevo sin etiqueta</estado>
+    </Prenda>
+    <Prenda>
+        <nombre>Vestido</nombre>
+        <talla>S</talla>
+        <color>Rojo</color>
+        <precio>45</precio>
+        <estado>Nuevo con etiqueta</estado>
+    </Prenda>
+    <Prenda>
+        <nombre>Sudadera capucha</nombre>
+        <talla>L</talla>
+        <color>Gris</color>
+        <precio>50</precio>
+        <estado>Usado en buen estado</estado>
+    </Prenda>
+    <Prenda>
+        <nombre>Falda Larga</nombre>
+        <talla>M</talla>
+        <color>Verde</color>
+        <precio>35</precio>
+        <estado>Nuevo sin etiqueta</estado>
+    </Prenda>
+    <Prenda>
+        <nombre>Zapatillas deportivas</nombre>
+        <talla>42</talla>
+        <color>Blanco</color>
+        <precio>60</precio>
+        <estado>Usado con defectos</estado>
+    </Prenda>
+    <Prenda>
+        <nombre>Chaqueta de cuero</nombre>
+        <talla>M</talla>
+        <color>Negro</color>
+        <precio>120</precio>
+        <estado>Usado con defectos</estado>
+    </Prenda>
+    <Prenda>
+        <nombre>Camiseta basica</nombre>
+        <talla>XL</talla>
+        <color>Blanco</color>
+        <precio>15</precio>
+        <estado>Nuevo con etiqueta</estado>
+    </Prenda>
+    <Prenda>
+        <nombre>Pantalones cortos</nombre>
+        <talla>M</talla>
+        <color>Beige</color>
+        <precio>26</precio>
+        <estado>Usado en buen estado</estado>
+    </Prenda>
+    <Prenda>
+        <nombre>Botines de cuero</nombre>
+        <talla>39</talla>
+        <color>Marron</color>
+        <precio>90</precio>
+        <estado>Usado con defectos</estado>
+    </Prenda>
+</Prendas>
