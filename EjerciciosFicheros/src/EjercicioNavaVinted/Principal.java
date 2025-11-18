@@ -3,11 +3,7 @@ package EjercicioNavaVinted;
 import java.io.BufferedReader;
 import java.io.EOFException;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -17,8 +13,7 @@ import javax.xml.bind.Marshaller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import EjercicioFinal.Persona;
-
+//@Author Manuel Bote Zabala
 public class Principal {
 	
 	static final File FILE_CSV = new File("ropa.csv");
@@ -236,7 +231,7 @@ public class Principal {
 	
 	public static void ejercicio5() {
 		ObjectMapper mapper = new ObjectMapper();
-		ContenedorRopaJSON contRopa = new ContenedorRopaJSON();
+		ArrayList<RopaJSON> contRopa = new ArrayList<RopaJSON>();
 		
 		try (RandomAccessFile raf = new RandomAccessFile(FILE_DAT, "r")){
 			
@@ -255,13 +250,13 @@ public class Principal {
 		            String estado = raf.readUTF().trim();
 		            int descuento = raf.readInt();
 
-		            contRopa.getPrendas().add(new RopaJSON(id, precio));
+		            contRopa.add(new RopaJSON(id, precio));
 		        } catch (EOFException eof) {
 		            break; // Fin del archivo, salimos del bucle
 		        }
 		    } 
 			
-			mapper.writeValue(FILE_JSON, contRopa.getPrendas());			
+			mapper.writeValue(FILE_JSON, contRopa);			
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

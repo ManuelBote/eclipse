@@ -2,8 +2,7 @@ package EjercicioNavaVinted;
 
 import java.io.Serializable;
 
-import javax.xml.bind.annotation.XmlType;
-
+//@Author Manuel Bote Zabala
 public class Ropa implements Serializable{
 
 	int id;

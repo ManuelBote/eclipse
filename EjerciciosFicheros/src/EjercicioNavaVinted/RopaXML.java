@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+//@Author Manuel Bote Zabala
 @XmlType(propOrder = {"nombre", "talla", "color", "precio", "estado"})
 public class RopaXML implements Serializable{
 

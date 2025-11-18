@@ -1,6 +1,7 @@
 package EjercicioNavaVinted;
 
 import java.io.Serializable;
+//@Author Manuel Bote Zabala
 import java.util.ArrayList;
 
 import javax.xml.bind.annotation.XmlElement;

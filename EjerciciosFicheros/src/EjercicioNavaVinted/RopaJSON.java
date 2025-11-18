@@ -1,5 +1,6 @@
 package EjercicioNavaVinted;
 
+//@Author Manuel Bote Zabala
 public class RopaJSON {
 
 	int id, precio;
