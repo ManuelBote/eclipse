@@ -20,7 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 //@Author Manuel Bote Zabala
 public class Principal {
-	//Nombres de rutas de ficheros
+	//Rutas de ficheros
 	static final File FILE_CSV = new File("FicheroExamen/AugustFit2.csv");
 	static final File FILE_DAT = new File("FicheroExamen/AugustFit.dat");
 	static final File FILE_XML = new File("FicheroExamen/AugustFitXML.xml");
@@ -31,10 +31,8 @@ public class Principal {
 	static ArrayList<Augusfit> listaFit = new ArrayList<Augusfit>();
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
 		int cond = 0;
-				
+		
 				do {
 					mostrarMenu();
 					cond = tc.nextInt(); tc.nextLine();
@@ -70,25 +68,26 @@ public class Principal {
 			String linea = "";
 			while((linea = br.readLine()) != null) {
 				String[] datos = linea.split(";");
-				listaFit.add(new Augusfit(Integer.parseInt(datos[0]), datos[1], Integer.parseInt(datos[2]), Integer.parseInt(datos[3]),
-						Integer.parseInt(datos[4]), Integer.parseInt(datos[5]), datos[6]));
+				listaFit.add(new Augusfit(Integer.parseInt(datos[0]), datos[1], Integer.parseInt(datos[2]), 
+						Integer.parseInt(datos[3]), Integer.parseInt(datos[4]), Integer.parseInt(datos[5]), 
+						datos[6]));
 						
 			}
 			System.out.println("Datos cargados");
 			
-			/*
-			 * Comprobacion de funcionamiento
-			 * for(Augusfit a : listaFit) {
-				System.out.println(a.toString());
-			}
-			 */	
+			/* Comprobacion de funcionamiento
+			 * 	
+			 *	for(Augusfit a : listaFit) {
+			 *		System.out.println(a.toString());
+			 *	}
+			 */
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
 	}
 	
-	//Ejercicio 1
+	//Ejercicio 1 - Generar fichero binario mediante la lista de datos cargados del CSV
 	public static void ejercicio1() {
 		//Llama al metodo por si no se habia cargado el fichero anteriormente
 		if(listaFit.isEmpty()) {
@@ -106,18 +105,20 @@ public class Principal {
 		}
 	}
 	
-	//Ejerccio 2
+	//Ejerccio 2 - Generar XML mediante la lista de datos cargados del CSV
 	public static void ejercicio2() {
 		//Llama al metodo por si no se habia cargado el fichero anteriormente
 		if(listaFit.isEmpty()) {
 			cargarDatosLista();
 		} 
-			
+		
+		//Cargar datos
 		ContenedorAugusFitXML contxml = new ContenedorAugusFitXML();
 		for(Augusfit a : listaFit) {
 			contxml.getPersonas().add(new AugusFitXML(a.getId(), a.getNombre(), a.getComentaio()));
 		}
 		
+		//Generar XML
 		try {
 			JAXBContext jaxbContext = JAXBContext.newInstance(ContenedorAugusFitXML.class);
 			Marshaller marshaller = jaxbContext.createMarshaller();
@@ -132,19 +133,21 @@ public class Principal {
 			
 	}
 	
-	//Ejercicio 3
+	//Ejercicio 3 - Generar JSON mediante la lista de datos cargados del CSV
 	public static void ejercicio3() {
 		//Llama al metodo por si no se habia cargado el fichero anteriormente
 		if(listaFit.isEmpty()) {
 			cargarDatosLista();
 		} 
 		
+		//Cargar datos
 		ObjectMapper mapper = new ObjectMapper();
 		ArrayList<AugusFitJson> contJson = new ArrayList<AugusFitJson>();
 		for(Augusfit a : listaFit) {
 			contJson.add(new AugusFitJson(a.getId(), a.getPasosDiarios(), a.getCaloriasQuemadas(), a.getHorasSueno(), a.getRitmoCardiaco()));
 		}
 		
+		//Generar JSON
 		try {
 			mapper.writeValue(FILE_JSON, contJson);
 			System.out.println("JSON creado");
@@ -155,10 +158,11 @@ public class Principal {
 		
 	}
 	
-	//Ejercicio 4
+	//Ejercicio 4 - Generar fichero aleatorio
 	public static void ejercicio4() {
 		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_DAT));
 				RandomAccessFile raf = new RandomAccessFile(FILE_RANDOM, "rw")){
+			//Bucle que para al generar un error de EOFException
 			while (true) {
 		        try {
 		        	Augusfit user = (Augusfit) ois.readObject();
@@ -181,10 +185,11 @@ public class Principal {
 	
 	//Ejercicio 5
 	public static void ejercicio5() {
+		//Peticion del id de usuario
 		System.out.print("Introduzca el id del usuario: ");
 		int idBuscado = tc.nextInt(); tc.nextLine();
 		
-		try (RandomAccessFile raf = new RandomAccessFile(FILE_RANDOM, "rw")){
+		try (RandomAccessFile raf = new RandomAccessFile(FILE_RANDOM, "r")){
 			while (raf.getFilePointer() < raf.length()) {
 				int id = raf.readInt();
 				
@@ -192,6 +197,7 @@ public class Principal {
 					int pasos = raf.readInt();
 					int ritmo = raf.readInt();
 					
+					//Este calculo es igual que pasos*(ritmo/100) pero con parentesis siempre da 0
 					double indice = pasos*ritmo/100;
 					System.out.println("Indice de actividad: " + indice);
 					
@@ -201,13 +207,11 @@ public class Principal {
 			}
 			System.out.println("Usuario no encontrado.");
 			
-			
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
 		
 	}
-
-
+	
 }
