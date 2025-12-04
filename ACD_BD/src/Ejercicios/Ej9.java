@@ -2,7 +2,10 @@ package Ejercicios;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 
 public class Ej9 {
@@ -43,7 +46,7 @@ public class Ej9 {
 			System.out.println("[4] Aniadir campo telefono");
 			System.out.println("[5] Rellenar telefono por id");
 			System.out.println("[0] Salir");
-			System.out.println("Selecciona una opcion");
+			System.out.print("Selecciona una opcion: ");
 			cond = tc.nextInt(); tc.nextLine();
 			
 			switch(cond) {
@@ -59,29 +62,149 @@ public class Ej9 {
 
 	}
 
-	private static Object rellenarTelefonoId() {
-		// TODO Auto-generated method stub
-		return null;
+	private static void rellenarTelefonoId() {
+		Connection conexion = conectar();
+		
+		System.out.print("Introduce el id del alumno: ");
+		int id = tc.nextInt(); tc.nextLine();
+		System.out.print("Introduce el telefono del alumno: ");
+		String telefono = tc.nextLine();
+		
+		String sql = "UPDATE alumno SET telefono = ? WHERE id = ?";
+		
+		try {
+			
+			PreparedStatement sentencia = conexion.prepareStatement(sql);
+			sentencia.setString(1, telefono);
+			sentencia.setInt(2, id);
+			
+			int resultado = sentencia.executeUpdate();
+			
+			if (resultado != -1) {
+				System.out.println("Se a agregado el telefono");
+			}
+			
+			sentencia.close();
+			conexion.close();
+			
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+	}
+		
+
+	private static void aniadirTelefono() {
+		Connection conexion = conectar();
+		
+		try {
+			
+			Statement sentencia = conexion.createStatement();
+			int resultado = sentencia.executeUpdate("ALTER TABLE alumno ADD COLUMN IF NOT EXISTS telefono VARCHAR(15)");
+			
+			if(resultado != -1) {
+				System.out.println("Se ha añadido el campo telefono");
+			}
+			
+			sentencia.close();
+			conexion.close();
+			
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		
+	}
+		
+
+	private static void nuevoAlumno() {
+		Connection conexion = conectar();
+		
+		System.out.print("Introduce el nombre del alumno: ");
+		String nombreA = tc.nextLine();
+		
+		try {
+			
+			Statement sentencia = conexion.createStatement();
+			int resultado = sentencia.executeUpdate("INSERT INTO alumno(nombre, curso) VALUES ('" + nombreA + "', '2DAM')");
+			
+			if(resultado != -1) {
+				System.out.println("Se ha añadido el nuevo alumno");
+			}
+			
+			sentencia.close();
+			conexion.close();
+			
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		
 	}
 
-	private static Object aniadirTelefono() {
-		// TODO Auto-generated method stub
-		return null;
+	private static void mostrarNotasAlumnos() {
+		Connection conexion = conectar();
+		
+		System.out.print("Introduce el nombre del alumno: ");
+		String nombreA = tc.nextLine();
+		
+		try {
+			
+			Statement sentencia = conexion.createStatement();
+			ResultSet resultado = sentencia.executeQuery("SELECT a.nombre      AS alumno, "
+														+ "       m.nombre      AS modulo, "
+														+ "       n.nota		AS nota "
+														+ "FROM ALUMNO a "
+														+ "JOIN NOTA n   ON n.alumno = a.id "
+														+ "JOIN MODULO m ON n.modulo = m.codigo "
+														+ "WHERE a.nombre = '"+ nombreA +"' "
+														+ "ORDER BY m.nombre, n.nota");
+			
+			System.out.println("Notas del alumno " + nombreA);
+			while(resultado.next()) {
+				System.out.println(resultado.getString(2) + " -> " + resultado.getInt(3));
+			}
+			
+			resultado.close();
+			sentencia.close();
+			conexion.close();
+			
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 	}
 
-	private static Object nuevoAlumno() {
-		// TODO Auto-generated method stub
-		return null;
+	private static void mostrarAlumnosasignaturas() {
+	Connection conexion = conectar();
+			
+			try {
+				
+				Statement sentencia = conexion.createStatement();
+				ResultSet resultado = sentencia.executeQuery("SELECT a.nombre      AS alumno, "
+															+ "       m.nombre      AS modulo "
+															+ "FROM ALUMNO a "
+															+ "JOIN NOTA n   ON n.alumno = a.id "
+															+ "JOIN MODULO m ON n.modulo = m.codigo "
+															+ "ORDER BY a.nombre, m.nombre");
+				
+				System.out.println("Nombre / Asignaturas");
+				while(resultado.next()) {
+					System.out.println(resultado.getString(1) + " / " + resultado.getString(2));
+				}
+				
+				resultado.close();
+				sentencia.close();
+				conexion.close();
+				
+			} catch (SQLException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
 	}
-
-	private static Object mostrarNotasAlumnos() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	private static Object mostrarAlumnosasignaturas() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		
 
 }
