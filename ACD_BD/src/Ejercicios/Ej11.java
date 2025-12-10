@@ -8,7 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
-public class Ej10 {
+public class Ej11 {
+	
 
 	private static final String URL = "jdbc:mysql://localhost:3306/navavinted";
 	private static final String USER = "root"; // Usuario
@@ -72,12 +73,14 @@ public class Ej10 {
 		String sql = "SELECT p.id_Producto, p.nombre_Producto, p.estado, p.precio "
 				+ "FROM PRODUCTO p "
 				+ "JOIN CATEGORIA c ON p.id_categoria = c.id_categoria "
-				+ "WHERE c.categoria = '" + categoria + "'";
+				+ "WHERE c.categoria = ?";
 		
 		try {
 			
-			Statement sentencia = conexion.createStatement();
-			ResultSet resultado = sentencia.executeQuery(sql);
+			PreparedStatement sentencia = conexion.prepareStatement(sql);
+			sentencia.setString(1, categoria);
+			
+			ResultSet resultado = sentencia.executeQuery();
 			
 			System.out.println("Categoria / id_producto / nombre_producto / estado / precio");
 			while(resultado.next()) {
@@ -107,12 +110,14 @@ public class Ej10 {
 		String sql = "SELECT p.id_Producto, p.nombre_Producto, p.estado, p.precio "
 				+ "FROM PRODUCTO p "
 				+ "JOIN TALLA t ON p.id_talla = t.id_talla "
-				+ "WHERE t.talla = '" + talla + "'";
+				+ "WHERE t.talla = ?";
 		
 		try {
 			
-			Statement sentencia = conexion.createStatement();
-			ResultSet resultado = sentencia.executeQuery(sql);
+			PreparedStatement sentencia = conexion.prepareStatement(sql);
+			sentencia.setString(1, talla);
+			
+			ResultSet resultado = sentencia.executeQuery();
 			
 			System.out.println("Talla / id_producto / nombre_producto / estado / precio");
 			while(resultado.next()) {
@@ -158,12 +163,24 @@ public class Ej10 {
 		int descuento = tc.nextInt(); tc.nextLine();
 		
 		String sql = "INSERT INTO producto (nombre_Producto, id_Categoria, id_Talla, id_Color, id_Material, stock, precio, costo, estado, descuento)"
-				+ "VALUES ('"+nombre+"', "+idCategoria+", "+idTalla+", "+idColor+", "+idMaterial+", "+stock+", "+precio+", "+costo+", '"+estado+"', "+descuento+")";
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
 			
-			Statement sentencia = conexion.createStatement();
-			int resultado = sentencia.executeUpdate(sql);
+			PreparedStatement sentencia = conexion.prepareStatement(sql);
+			sentencia.setString(1, nombre);
+			sentencia.setInt(2, idCategoria);
+			sentencia.setInt(3, idTalla);
+			sentencia.setInt(4, idColor);
+			sentencia.setInt(2, idMaterial);
+			sentencia.setInt(2, stock);
+			sentencia.setDouble(2, precio);
+			sentencia.setDouble(2, costo);
+			sentencia.setString(2, estado);
+			sentencia.setInt(2, descuento);
+
+			
+			int resultado = sentencia.executeUpdate();
 			
 			if(resultado != -1) {
 				System.out.println("Se ha añadido el nuevo producto");
@@ -188,11 +205,13 @@ public class Ej10 {
 		System.out.print("Indica el id del producto: ");
 		int id = tc.nextInt();
 		
-		String sql = "SELECT precio, descuento FROM producto WHERE id_Producto = " + id;
+		String sql = "SELECT precio, descuento FROM producto WHERE id_Producto = ?";
 		
 		try {
-			Statement sentencia = conexion.createStatement();
-			ResultSet resultado = sentencia.executeQuery(sql);
+			PreparedStatement sentencia = conexion.prepareStatement(sql);
+			sentencia.setInt(1, id);
+			
+			ResultSet resultado = sentencia.executeQuery();
 			
 			while(resultado.next()) {
 				double precio = resultado.getDouble(1);
@@ -226,12 +245,14 @@ public class Ej10 {
 		System.out.print("Indica la cantidad a comprar: ");
 		int compra = tc.nextInt();
 		
-		String sql = "UPDATE producto SET stock = stock - " + compra + " WHERE id_Producto = " + id;
+		String sql = "UPDATE producto SET stock = stock - ? WHERE id_Producto = ?";
 		
 		try {
 			
-			Statement sentencia = conexion.createStatement();
-			int resultado = sentencia.executeUpdate(sql);
+			PreparedStatement sentencia = conexion.prepareStatement(sql);
+			sentencia.setInt(1, id);
+			sentencia.setInt(2, compra);
+			int resultado = sentencia.executeUpdate();
 			
 			if(resultado != -1) {
 				System.out.println("Se ha realizado la compra");
