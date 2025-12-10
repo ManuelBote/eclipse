@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
+//@author Manuel Bote Zabala
 public class Ej10 {
 
 	private static final String URL = "jdbc:mysql://localhost:3306/navavinted";
