@@ -173,12 +173,12 @@ public class Ej11 {
 			sentencia.setInt(2, idCategoria);
 			sentencia.setInt(3, idTalla);
 			sentencia.setInt(4, idColor);
-			sentencia.setInt(2, idMaterial);
-			sentencia.setInt(2, stock);
-			sentencia.setDouble(2, precio);
-			sentencia.setDouble(2, costo);
-			sentencia.setString(2, estado);
-			sentencia.setInt(2, descuento);
+			sentencia.setInt(5, idMaterial);
+			sentencia.setInt(6, stock);
+			sentencia.setDouble(7, precio);
+			sentencia.setDouble(8, costo);
+			sentencia.setString(9, estado);
+			sentencia.setInt(10, descuento);
 
 			
 			int resultado = sentencia.executeUpdate();
