@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Augustfit>
+    <Usuario>
+        <id>1</id>
+        <nombre>Carlos</nombre>
+        <comentario>Persona activa con buen descanso</comentario>
+    </Usuario>
+    <Usuario>
+        <id>2</id>
+        <nombre>Ana</nombre>
+        <comentario>Excelente rendimiento físico diario</comentario>
+    </Usuario>
+    <Usuario>
+        <id>4</id>
+        <nombre>Marcos</nombre>
+        <comentario>Trabaja sentado pero camina por las tardes</comentario>
+    </Usuario>
+    <Usuario>
+        <id>5</id>
+        <nombre>Lucía</nombre>
+        <comentario>Muy aficionada al senderismo</comentario>
+    </Usuario>
+    <Usuario>
+        <id>7</id>
+        <nombre>Sara</nombre>
+        <comentario>Rutina diaria de ejercicio moderado</comentario>
+    </Usuario>
+    <Usuario>
+        <id>9</id>
+        <nombre>David</nombre>
+        <comentario>Entrena en gimnasio tres veces por semana</comentario>
+    </Usuario>
+    <Usuario>
+        <id>10</id>
+        <nombre>Elena</nombre>
+        <comentario>Actividad baja pero sueño estable</comentario>
+    </Usuario>
+    <Usuario>
+        <id>12</id>
+        <nombre>Juan</nombre>
+        <comentario>Corredor aficionado</comentario>
+    </Usuario>
+    <Usuario>
+        <id>13</id>
+        <nombre>Pablo</nombre>
+        <comentario>Actividad muy baja por trabajo intenso</comentario>
+    </Usuario>
+    <Usuario>
+        <id>15</id>
+        <nombre>Claudia</nombre>
+        <comentario>Realiza yoga cada mañana</comentario>
+    </Usuario>
+    <Usuario>
+        <id>16</id>
+        <nombre>Gabriel</nombre>
+        <comentario>Camina al trabajo todos los días</comentario>
+    </Usuario>
+    <Usuario>
+        <id>18</id>
+        <nombre>Andrea</nombre>
+        <comentario>Muy activa y deportista</comentario>
+    </Usuario>
+    <Usuario>
+        <id>19</id>
+        <nombre>Laura</nombre>
+        <comentario>Participa en clases de baile</comentario>
+    </Usuario>
+    <Usuario>
+        <id>21</id>
+        <nombre>Mario</nombre>
+        <comentario>Actividad irregular</comentario>
+    </Usuario>
+    <Usuario>
+        <id>22</id>
+        <nombre>Isabel</nombre>
+        <comentario>Buen equilibrio entre ejercicio y descanso</comentario>
+    </Usuario>
+    <Usuario>
+        <id>23</id>
+        <nombre>Diego</nombre>
+        <comentario>Actividad ligera</comentario>
+    </Usuario>
+    <Usuario>
+        <id>25</id>
+        <nombre>Julia</nombre>
+        <comentario>Rutina constante y saludable</comentario>
+    </Usuario>
+    <Usuario>
+        <id>27</id>
+        <nombre>Hugo</nombre>
+        <comentario>Atleta amateur</comentario>
+    </Usuario>
+    <Usuario>
+        <id>28</id>
+        <nombre>Sofía</nombre>
+        <comentario>Actividad moderada</comentario>
+    </Usuario>
+    <Usuario>
+        <id>29</id>
+        <nombre>Nuria</nombre>
+        <comentario>Entrena cardio casi diario</comentario>
+    </Usuario>
+    <Usuario>
+        <id>31</id>
+        <nombre>Fernando</nombre>
+        <comentario>Poca actividad</comentario>
+    </Usuario>
+    <Usuario>
+        <id>32</id>
+        <nombre>Patricia</nombre>
+        <comentario>Corre 3 veces por semana</comentario>
+    </Usuario>
+    <Usuario>
+        <id>34</id>
+        <nombre>Adrián</nombre>
+        <comentario>Actividad baja pero creciente</comentario>
+    </Usuario>
+    <Usuario>
+        <id>35</id>
+        <nombre>Rocío</nombre>
+        <comentario>Se ejercita al aire libre</comentario>
+    </Usuario>
+    <Usuario>
+        <id>37</id>
+        <nombre>César</nombre>
+        <comentario>Hace bicicleta cada fin de semana</comentario>
+    </Usuario>
+    <Usuario>
+        <id>38</id>
+        <nombre>Lidia</nombre>
+        <comentario>Alto nivel de actividad</comentario>
+    </Usuario>
+    <Usuario>
+        <id>40</id>
+        <nombre>Daniel</nombre>
+        <comentario>Actividad media</comentario>
+    </Usuario>
+    <Usuario>
+        <id>41</id>
+        <nombre>Teresa</nombre>
+        <comentario>Práctica frecuente de senderismo</comentario>
+    </Usuario>
+    <Usuario>
+        <id>43</id>
+        <nombre>Álvaro</nombre>
+        <comentario>Racha de ejercicio inconstante</comentario>
+    </Usuario>
+    <Usuario>
+        <id>44</id>
+        <nombre>Noelia</nombre>
+        <comentario>Buena condición física</comentario>
+    </Usuario>
+    <Usuario>
+        <id>46</id>
+        <nombre>Esteban</nombre>
+        <comentario>Actividad moderada-baja</comentario>
+    </Usuario>
+    <Usuario>
+        <id>47</id>
+        <nombre>Carmen</nombre>
+        <comentario>Energía alta y rutina estable</comentario>
+    </Usuario>
+    <Usuario>
+        <id>48</id>
+        <nombre>Raúl</nombre>
+        <comentario>Actividad moderada diaria</comentario>
+    </Usuario>
+    <Usuario>
+        <id>50</id>
+        <nombre>Silvia</nombre>
+        <comentario>Hace ejercicio todas las tardes</comentario>
+    </Usuario>
+    <Usuario>
+        <id>52</id>
+        <nombre>Óscar</nombre>
+        <comentario>Poca actividad diaria</comentario>
+    </Usuario>
+    <Usuario>
+        <id>53</id>
+        <nombre>Natalia</nombre>
+        <comentario>Alta constancia deportiva</comentario>
+    </Usuario>
+    <Usuario>
+        <id>55</id>
+        <nombre>Joel</nombre>
+        <comentario>Rutina fuerte en gimnasio</comentario>
+    </Usuario>
+    <Usuario>
+        <id>56</id>
+        <nombre>Beatriz</nombre>
+        <comentario>Ejerce actividad moderada diaria</comentario>
+    </Usuario>
+    <Usuario>
+        <id>57</id>
+        <nombre>Iván</nombre>
+        <comentario>Ciclista urbano</comentario>
+    </Usuario>
+    <Usuario>
+        <id>59</id>
+        <nombre>Lorena</nombre>
+        <comentario>Actividad equilibrada</comentario>
+    </Usuario>
+    <Usuario>
+        <id>60</id>
+        <nombre>Ramón</nombre>
+        <comentario>Actividad baja</comentario>
+    </Usuario>
+    <Usuario>
+        <id>62</id>
+        <nombre>Paula</nombre>
+        <comentario>Corredora habitual</comentario>
+    </Usuario>
+    <Usuario>
+        <id>63</id>
+        <nombre>Manuel</nombre>
+        <comentario>Actividad moderada</comentario>
+    </Usuario>
+    <Usuario>
+        <id>65</id>
+        <nombre>Rebeca</nombre>
+        <comentario>Nivel elevado de actividad</comentario>
+    </Usuario>
+    <Usuario>
+        <id>66</id>
+        <nombre>Victor</nombre>
+        <comentario>Actividad constante</comentario>
+    </Usuario>
+    <Usuario>
+        <id>68</id>
+        <nombre>Helena</nombre>
+        <comentario>Camina mucho por trabajo</comentario>
+    </Usuario>
+    <Usuario>
+        <id>69</id>
+        <nombre>Toni</nombre>
+        <comentario>Ejercicio intermitente</comentario>
+    </Usuario>
+    <Usuario>
+        <id>71</id>
+        <nombre>Marta</nombre>
+        <comentario>Buena forma física</comentario>
+    </Usuario>
+    <Usuario>
+        <id>73</id>
+        <nombre>Jorge</nombre>
+        <comentario>Actividad ligera</comentario>
+    </Usuario>
+    <Usuario>
+        <id>74</id>
+        <nombre>Alicia</nombre>
+        <comentario>Corredora avanzada</comentario>
+    </Usuario>
+    <Usuario>
+        <id>75</id>
+        <nombre>Samuel</nombre>
+        <comentario>Actividad equilibrada</comentario>
+    </Usuario>
+</Augustfit>

@@ -20,6 +20,7 @@ import javax.xml.bind.Unmarshaller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+//@author Manuel Bote Zabala
 public class Principal {
 
 	static Scanner sc = new Scanner(System.in);
@@ -33,7 +34,7 @@ public class Principal {
 		ObjectMapper mapper = new ObjectMapper();
 
 		try {
-			Personas personas = mapper.readValue(new File("json/personas.json"), Personas.class);
+			Personas personas = mapper.readValue(new File("EjercicioFinalFicheros/personas.json"), Personas.class);
 			personasJson.setPersonas(personas.getPersonas());
 			/*
 			 * Comprobar que cargue objetos for(PersonaJson p :
@@ -55,7 +56,7 @@ public class Principal {
 		try {
 			JAXBContext contexto = JAXBContext.newInstance(Personas.class);
 			Unmarshaller um = contexto.createUnmarshaller();
-			personasXml = (Personas) um.unmarshal(new File("xml/personas.xml"));
+			personasXml = (Personas) um.unmarshal(new File("EjercicioFinalFicheros/personas.xml"));
 			/*
 			 * Comprobar que cargen los objetos for(PersonaXML p :
 			 * personasXml.getPersonasXML()) { System.out.println(p.toString()); }
@@ -133,11 +134,13 @@ public class Principal {
 		try (RandomAccessFile raf = new RandomAccessFile("telefonos.bin", "r");){
 			while (raf.getFilePointer() < raf.length()) {
 				String dni = raf.readUTF();
-				int tel = raf.readInt();
+				
 				if (dni.trim().equalsIgnoreCase(dniBuscado.trim())) {
+					int tel = raf.readInt();
 					System.out.println("Teléfono de " + dni + ": " + tel);
 					return;
 				}
+				else {raf.skipBytes(4);}
 			}
 			System.out.println("DNI no encontrado.");
 			
@@ -160,7 +163,7 @@ public class Principal {
 		            
 		            String dni = p.getDni();
 		            if(dni.length() < 9) {
-		            	while(dni.length()<20) {
+		            	while(dni.length()<9) {
 		    				dni += " ";
 		    			}
 		            } else if(dni.length() > 9) {

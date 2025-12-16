@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlElement;
 
+//@author Manuel Bote Zabala
 public class Persona implements Serializable {
 	
 	String dni;
