@@ -1,0 +1,4 @@
+12345678A;Juan Pérez;39;Ventas;3000;300.0
+45678912B;Carlos Sánchez;34;Marketing;4500;450.0
+58969696Z;Ana Gómez;32;Ventas;2500;250.0
+98765432S;Maria Rodríguez;42;RRHH;3500;350.0
