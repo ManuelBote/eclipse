@@ -23,7 +23,7 @@ public class BingoProceso {
                 
                 ProcessBuilder pb = new ProcessBuilder(
                     "java",
-                    "src/EjerciciosRepaso/JugadorProceso.java",  // Tu línea que funciona
+                    "src/EjerciciosRepaso/JugadorProceso.java",  
                     String.valueOf(i)
                 );
                 pb.redirectError(ProcessBuilder.Redirect.INHERIT);
