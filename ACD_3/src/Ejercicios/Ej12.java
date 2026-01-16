@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+//@Author Manuel Bote Zabala
 public class Ej12 {
 
 	static Scanner ts = new Scanner(System.in);
@@ -34,6 +35,7 @@ public class Ej12 {
 			System.out.print("Cantidad de vacunas de la mascota: ");
 			int cant = ts.nextInt(); ts.nextLine();
 			
+			//Formacion del array
 			StringBuilder arrayVacunas = new StringBuilder("ARRAY[");
 			
 			for (int i = 0; i < cant; i++) {
