@@ -2,6 +2,7 @@ package Ejercicios;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -29,15 +30,9 @@ public class Ej12 {
 			String especie = ts.nextLine();
 			System.out.print("Raza de la mascota: ");
 			String raza = ts.nextLine();
-			System.out.print("DNI del propietario de la mascota: ");
-			String dni_propietario = ts.nextLine();
-			
+
 			System.out.print("Cantidad de vacunas de la mascota: ");
 			int cant = ts.nextInt(); ts.nextLine();
-			
-			String[] nombre_vacuna = new String[cant];
-			Integer[] num_veterinario = new Integer[cant];
-			LocalDate[] fecha_vacuna = new LocalDate[cant];
 			
 			StringBuilder arrayVacunas = new StringBuilder("ARRAY[");
 			
@@ -54,24 +49,23 @@ public class Ej12 {
 				if(i > 0) {
 					arrayVacunas.append(", ");
 				}
-				
-				arrayVacunas.append("ROW");
-				
-				
-				
+				arrayVacunas.append("('" + vacuna + "', '" + veterinario + "', '" + fecha + "')");	
 			}
+			arrayVacunas.append("]::cartilla_vacunacion[]");
 			
 			
+			String sql = "INSERT INTO public.mascota (nombre, especie, raza, vacuna)"
+					+ "VALUES (?, ?, ?, "+ arrayVacunas.toString() +")";
 			
-			
-			String sql = "INSERT INTO public.mascota (nombre, especie, raza)"
-					+ "VALUES ('" + nombre + "', '" + especie + "', '" + raza + "')";
-			
-			Statement stmt = conexion.createStatement();
+			PreparedStatement stmt = conexion.prepareStatement(sql);
+			stmt.setString(1, nombre);	
+			stmt.setString(2, especie);
+			stmt.setString(3, raza);
+
 			
 			// Ejecutar la consulta
-			int filasInsertadas = stmt.executeUpdate(sql);
-			if (filasInsertadas > 0) {
+			int resultado = stmt.executeUpdate();
+			if (resultado > 0) {
 			System.out.println("¡Datos insertados con éxito!");
 			} else {
 			System.out.println("No se insertaron datos.");
