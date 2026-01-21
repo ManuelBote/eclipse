@@ -10,7 +10,7 @@ public class Ej13 {
 	public static void menuAlta() {
 		int menu = 0;
 		
-		System.out.println("======= Menu Alta =======");
+		System.out.println("\n======= Menu Alta =======");
 		System.out.println("[1] Alta Veterinario");
 		System.out.println("[2] Alta Mascota");
 		System.out.println("[3] Alta Propietario");
