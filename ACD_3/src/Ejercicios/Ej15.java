@@ -153,7 +153,7 @@ public class Ej15 {
 	public static void metodo3() {
 		Connection conexion = conectar();
 		
-		String sql = "SELECT DISTINCT m.nombre, m.especie, m.raza, m.dni_propietario"
+		String sql = "SELECT DISTINCT m.nombre, m.especie, m.raza, m.dni_propietario "
 						+ "FROM public.mascota m WHERE m.especie = 'perro' "
 						+ "AND EXISTS (SELECT 1 FROM unnest(m.vacuna) AS v(nombre_vacuna, numero_colegiado_veterinario, fecha_aplicacion) "
 										+ "WHERE v.nombre_vacuna = 'moquillo')";
