@@ -87,7 +87,40 @@ public class Ej16 {
 		
 	}
 	
-	
+	private static void contarMascotasTotal(Connection conn) {
+		try (CallableStatement stmt = conn.prepareCall("{ ? = call total_mascotas() }")) {
+			stmt.registerOutParameter(1, Types.INTEGER);
+
+			stmt.execute();
+
+			int total = stmt.getInt(1);
+			System.out.println("\nTOTAL MASCOTAS REGISTRADAS: " + total);
+
+		} catch (SQLException e) {
+			System.out.println("Error función: " + e.getMessage());
+		}
+	}
+
+	private static void vacunar(Connection conn, Scanner sc) {
+		try (CallableStatement stmt = conn.prepareCall("{ ? = call vacunar_mascota_existente(?, ?, ?, ?) }")) {
+			stmt.registerOutParameter(1, Types.VARCHAR);
+
+			System.out.print("Nombre mascota: ");
+			stmt.setString(2, sc.nextLine());
+			System.out.print("Vacuna: ");
+			stmt.setString(3, sc.nextLine());
+			System.out.print("Número de colegiado: ");
+			stmt.setInt(4, Integer.parseInt(sc.nextLine()));
+			System.out.print("Fecha (YYYY-MM-DD): ");
+			stmt.setDate(5, java.sql.Date.valueOf(sc.nextLine()));
+
+			stmt.execute();
+			System.out.println("\n" + stmt.getString(1));
+
+		} catch (SQLException e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+	}
 	
 	
 	
