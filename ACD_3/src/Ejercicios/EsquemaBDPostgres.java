@@ -1,3 +1,5 @@
+package Ejercicios;
+
 // Esquema general de trabajo con PostgreSQL y arrays 1D desde Java
 // (usa JDBC + tipos ARRAY + funciones almacenadas)
 

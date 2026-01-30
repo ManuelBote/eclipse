@@ -87,6 +87,7 @@ public class Ej16 {
 		
 	}
 	
+	/*
 	private static void contarMascotasTotal(Connection conn) {
 		try (CallableStatement stmt = conn.prepareCall("{ ? = call total_mascotas() }")) {
 			stmt.registerOutParameter(1, Types.INTEGER);
@@ -122,7 +123,7 @@ public class Ej16 {
 		}
 	}
 	
-	
+	*/
 	
 	
 	
