@@ -4,13 +4,13 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
 http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	version="2.0">
-	<persistence-unit name="bdDireccion"
+	<persistence-unit name="bdAlumnos"
 		transaction-type="RESOURCE_LOCAL">
 		<!-- Persistence provider -->
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<!-- Representamos las clases / Opcional, si no se ponen se mapean todas -->
-		<class>OTO.Persona</class>		
-		<class>OTO.Direccion</class>
+		<class>Clase.Alumno</class>
+		<class>Clase.Profesor</class>
 		<!-- Solamente se mapean las clases representadas con class -->
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>
@@ -18,7 +18,7 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 			<property name="javax.persistence.jdbc.driver"
 				value="com.mysql.cj.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:mysql://localhost:3306/bddirecciones" />
+				value="jdbc:mysql://localhost:3306/bdalumnos2" />
 			<property name="javax.persistence.jdbc.user" value="root" />
 			<property name="javax.persistence.jdbc.password" value="" />
 			<!-- Configuración de Hibernate -->

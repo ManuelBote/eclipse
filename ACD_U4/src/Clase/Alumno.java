@@ -1,17 +1,15 @@
 package Clase;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity(name = "alumno")
-@Table(name = "alumno")
-public class Alumno implements Serializable{
+@Entity
+public class Alumno {
 
 
 	@Id
@@ -74,11 +72,6 @@ public class Alumno implements Serializable{
 
 	public void setTelefono(int telefono) {
 		this.telefono = telefono;
-	}
-
-	@Override
-	public String toString() {
-		return "Alumno [id=" + id + ", nombre=" + nombre + ", curso=" + curso + ", telefono=" + telefono + "]";
 	}
 	
 	
