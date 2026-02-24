@@ -20,12 +20,10 @@ public class Producto {
 	    private String description;
 
 	    @NotNull
-	    @Min(1) // price > 0
 	    @Column(name = "price", nullable = false)
 	    private Double price;
 
 	    @NotNull
-	    @Min(0) // stock ≥ 0
 	    @Column(name = "stock", nullable = false)
 	    private Integer stock;
 
