@@ -12,19 +12,20 @@ import com.example.productos.repository.ProductoRepositorio;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/productos")
 public class ProductoController {
 	
 
     @Autowired
     private ProductoRepositorio service;
 
-    // GET /products
-    @GetMapping("/productos")
+    // Obtener todo
+    @GetMapping
     public List<Producto> getAll() {
         return service.findAll();
     }
 
-    // GET /products/{id}
+    // Obtener por id
     @GetMapping("/{id}")
     public ResponseEntity<Producto> getById(@PathVariable int id) {
         return service.findById(id)
@@ -32,14 +33,14 @@ public class ProductoController {
                 .orElse(ResponseEntity.notFound().build()); // 404 si no existe
     }
 
-    // POST /products
+    // Agregar
     @PostMapping
     public ResponseEntity<Producto> create(@Valid @RequestBody Producto product) {
     	Producto created = service.save(product);
         return ResponseEntity.ok(created); // 200 con el producto en JSON
     }
 
-    // PUT opcional, por si quieres actualizar
+    // Modificar
     @PutMapping("/{id}")
     public ResponseEntity<Producto> update(@PathVariable int id,
                                           @Valid @RequestBody Producto product) {
@@ -50,7 +51,7 @@ public class ProductoController {
         return ResponseEntity.notFound().build();
     }
 
-    // DELETE opcional
+    // Eliminar
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable int id) {
         if (service.findById(id).isPresent()) {
