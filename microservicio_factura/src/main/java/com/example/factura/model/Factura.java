@@ -1,5 +1,8 @@
 package com.example.factura.model;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -9,46 +12,79 @@ import jakarta.validation.constraints.NotNull;
 public class Factura {
 	 @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private int id;
+	    private Long id;
 
-	    @NotBlank
-	    @Column(name = "name", length = 100, nullable = false)
-	    private String name;
+	    private Long cliente;      // id del cliente
+	    private LocalDate fecha;
+	    private Double total;
 
-	    @NotBlank
-	    @Column(name = "description", length = 255, nullable = false)
-	    private String description;
-
-	    @NotNull
-	    @Column(name = "price", nullable = false)
-	    private Double price;
-
-	    @NotNull
-	    @Column(name = "stock", nullable = false)
-	    private Integer stock;
-
+	    // relación con productosFactura
+	    @OneToMany(mappedBy = "factura", cascade = CascadeType.ALL)
+	    private List<ProductoFactura> productos;
+	    
+	    
 	    public Factura() {}
 
-	    public Factura(String name, String description, Double price, Integer stock) {
-	        this.name = name;
-	        this.description = description;
-	        this.price = price;
-	        this.stock = stock;
-	    }
 
-	    public int getId() { return id; }
-	    public void setId(int id) { this.id = id; }
+		public Factura(Long cliente, LocalDate fecha, Double total, List<ProductoFactura> productos) {
+			super();
+			this.cliente = cliente;
+			this.fecha = fecha;
+			this.total = total;
+			this.productos = productos;
+		}
 
-	    public String getName() { return name; }
-	    public void setName(String name) { this.name = name; }
 
-	    public String getDescription() { return description; }
-	    public void setDescription(String description) { this.description = description; }
+		public Long getId() {
+			return id;
+		}
 
-	    public Double getPrice() { return price; }
-	    public void setPrice(Double price) { this.price = price; }
 
-	    public Integer getStock() { return stock; }
-	    public void setStock(Integer stock) { this.stock = stock; }
+		public void setId(Long id) {
+			this.id = id;
+		}
 
+
+		public Long getCliente() {
+			return cliente;
+		}
+
+
+		public void setCliente(Long cliente) {
+			this.cliente = cliente;
+		}
+
+
+		public LocalDate getFecha() {
+			return fecha;
+		}
+
+
+		public void setFecha(LocalDate fecha) {
+			this.fecha = fecha;
+		}
+
+
+		public Double getTotal() {
+			return total;
+		}
+
+
+		public void setTotal(Double total) {
+			this.total = total;
+		}
+
+
+		public List<ProductoFactura> getProductos() {
+			return productos;
+		}
+
+
+		public void setProductos(List<ProductoFactura> productos) {
+			this.productos = productos;
+		}
+
+	   
+	    
+	    
 }

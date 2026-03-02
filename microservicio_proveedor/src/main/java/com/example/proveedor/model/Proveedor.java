@@ -4,51 +4,52 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-
 @Entity
+@Table(name = "proveedores")
 public class Proveedor {
-	 @Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private int id;
 
-	    @NotBlank
-	    @Column(name = "name", length = 100, nullable = false)
-	    private String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	    @NotBlank
-	    @Column(name = "description", length = 255, nullable = false)
-	    private String description;
+    private String nombre;
+    private String personaContacto;
+    private String email;
 
-	    @NotNull
-	    @Column(name = "price", nullable = false)
-	    private Double price;
+    
+	public Proveedor() {
+	}
+	
+	public Proveedor(String nombre, String personaContacto, String email) {
+		this.nombre = nombre;
+		this.personaContacto = personaContacto;
+		this.email = email;
+	}
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public String getPersonaContacto() {
+		return personaContacto;
+	}
+	public void setPersonaContacto(String personaContacto) {
+		this.personaContacto = personaContacto;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-	    @NotNull
-	    @Column(name = "stock", nullable = false)
-	    private Integer stock;
-
-	    public Proveedor() {}
-
-	    public Proveedor(String name, String description, Double price, Integer stock) {
-	        this.name = name;
-	        this.description = description;
-	        this.price = price;
-	        this.stock = stock;
-	    }
-
-	    public int getId() { return id; }
-	    public void setId(int id) { this.id = id; }
-
-	    public String getName() { return name; }
-	    public void setName(String name) { this.name = name; }
-
-	    public String getDescription() { return description; }
-	    public void setDescription(String description) { this.description = description; }
-
-	    public Double getPrice() { return price; }
-	    public void setPrice(Double price) { this.price = price; }
-
-	    public Integer getStock() { return stock; }
-	    public void setStock(Integer stock) { this.stock = stock; }
-
+    
 }

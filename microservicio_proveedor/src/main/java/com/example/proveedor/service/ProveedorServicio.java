@@ -12,23 +12,13 @@ import java.util.Optional;
 @Service
 public class ProveedorServicio {
 
-	@Autowired
-	private ProveedorRepositorio repository;
+	 @Autowired
+	    private ProveedorRepositorio repo;
 
-	public List<Proveedor> findAll() {
-		return repository.findAll();
-	}
+	    public List<Proveedor> findAll() { return repo.findAll(); }
 
-	public Optional<Proveedor> findById(int id) {
-		return repository.findById(id);
-	}
+	    public Optional<Proveedor> findById(Long id) { return repo.findById(id); }
 
-	public Proveedor save(Proveedor product) {
-		return repository.save(product);
-	}
-
-	public void deleteById(int id) {
-		repository.deleteById(id);
-	}
+	    public Proveedor save(Proveedor p) { return repo.save(p); }
 
 }
